@@ -4,12 +4,16 @@
 #include <stdexcept>
 #define OTPLEN 44
 #define IDLEN 12
+
 const char *YUBICO = "https://api.yubico.com";
 const char *usage = "Usage: ./verifyOtp <Yubikey generated OTP>";
 
-/**
- * Required fields: id, otp, nonce
- */ 
+// makes an HTTP GET request to given URL, populates respnse
+int makeRequest(const char *path, ValidateKeyResponse *response);
+// takes request object and applies HMAC-SHA1, returning request
+int HMACSign(ValidateKeyRequest *request, std::string *body);
+
+// Required fields: id, otp, nonce
 typedef struct {
     // yubikey id?
     std::string *id;
@@ -84,9 +88,14 @@ int main(int argc, char* argv[]) {
     printf("ID: %s\n"
         "OTP: %s\n", id.c_str(), otp.c_str());
 
-    
+    /**
+     * TODO:
+     *  - Construct ValidateKeyRequest struct
+     *  - Pass object to HMACSign and take resulting URL
+     *  - send HTTP GET to the url
+     *  - take populated response and read it off to user
+     */
 
-    // make an HTTP GET
     return 0;
 }
 
@@ -98,7 +107,7 @@ int main(int argc, char* argv[]) {
  *  - base64 encode resulting value
  *  - return result 
  */
-int generateHMACSig(ValidateKeyRequest req, std::string* body) {
+int HMACSign(ValidateKeyRequest req, std::string* body) {
     return 0;
 }
 

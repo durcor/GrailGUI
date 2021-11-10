@@ -24,7 +24,7 @@ aes_enc_dec:
 
 # Small example of encrypting a string using AES256
 aes_enc_dec_str:
-	g++ $(CFLAGS aes_enc_dec_str aes_enc_dec_str.cc $(LIBS)
+	g++ $(CFLAGS) aes_enc_dec_str aes_enc_dec_str.cc $(LIBS)
 
 clean:
 	rm -f openfile aes_enc_dec 
