@@ -2,3 +2,4 @@
 repo/aes256/*.txt
 */.vscode/
 repo/yubikey_auth/validateOtp
+repo/yubikey_auth/key.txt
